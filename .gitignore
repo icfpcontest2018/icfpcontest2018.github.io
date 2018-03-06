@@ -1,2 +1,4 @@
-_site
+.bundle
 Gemfile.lock
+_site
+vendor/
