@@ -2,7 +2,7 @@
 title: ""
 ---
 
-# Contest Announcement
+# <a name="contest_announcement"></a>Contest Announcement
 
 The ICFP Programming Contest 2018 is the 21st instance of the annual programming
 contest series sponsored by the [ACM SIGPLAN International Conference on
