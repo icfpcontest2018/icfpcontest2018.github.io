@@ -36,3 +36,7 @@ In addition, the organizers will declare during the conference that:
 * the second place team's language is "a fine tool for many applications",
 * the winning lightning division team's language is "very suitable for rapid prototyping", and
 * the team winning the judges' prize is "an extremely cool bunch of hackers".
+
+## <a name="contest_organizers"></a>Contest Organizers
+
+The ICFP Programming Contest 2018 is organized by [Matthew Fluet](https://www.cs.rit.edu/~mtf) and colleagues at the [Rochester Institute of Technology](https://www.rit.edu).
