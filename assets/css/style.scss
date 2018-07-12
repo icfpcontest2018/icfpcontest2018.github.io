@@ -11,4 +11,52 @@
 
 @media only screen and (max-width: 767px) { .wide-inner { width: 93%; margin: 0 auto; } }
 
+/* *************************************************************** */
+
 header h1 { width: 100%; font-size: 64px; }
+
+#main-content h1 { font-size: 2.8em; }
+#main-content h2 { font-size: 2.0em; }
+#main-content h3 { font-size: 1.7em; }
+#main-content h4 { font-size: 1.4em; }
+#main-content h5 { font-size: 1.1em; }
+#main-content h6 { font-size: 0.8em; }
+
+hr { margin-top: 20px; margin-bottom: 20px; }
+
+li > ul { margin-bottom: auto; }
+
+pre { margin-top: auto; margin-bottom: 20px; }
+
+table { margin: auto; width: auto; }
+
+table pre { padding: 5px; margin: 5px; }
+
+/* *************************************************************** */
+
+form { margin: auto; margin-bottom: 20px; }
+
+form { border-color: black; border-style: solid; }
+
+form > p:last-child { margin-bottom: 0px; }
+
+input[type="email"] { width: 600px; }
+input[type="text"] { width: 600px; }
+input[type="url"] { width: 600px; }
+textarea { width: 600px; height: 160px; }
+
+form label {
+    color: #000000;
+}
+
+form button[type="submit"] {
+    color: #000000;
+}
+
+form input[type="button"]:disabled {
+    color: #666;
+}
+
+form input[type="button"]:enabled {
+    color: #000000;
+}
