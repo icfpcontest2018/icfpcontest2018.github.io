@@ -2,7 +2,7 @@
 title: ""
 ---
 
-# <a name="contest_announcement"></a>Contest Announcement
+# Contest Announcement
 
 The ICFP Programming Contest 2018 is the 21st instance of the annual programming
 contest series sponsored by the [ACM SIGPLAN International Conference on
@@ -37,6 +37,6 @@ In addition, the organizers will declare during the conference that:
 * the winning lightning division team's language is "very suitable for rapid prototyping", and
 * the team winning the judges' prize is "an extremely cool bunch of hackers".
 
-## <a name="contest_organizers"></a>Contest Organizers
+## Contest Organizers
 
 The ICFP Programming Contest 2018 is organized by [Matthew Fluet](https://www.cs.rit.edu/~mtf) and colleagues at the [Rochester Institute of Technology](https://www.rit.edu).
