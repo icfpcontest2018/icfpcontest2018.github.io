@@ -3,4 +3,12 @@
 
 @import "{{ site.theme }}";
 
+/* *************************************************************** */
+
+.wide-inner { position: relative; width: auto; margin: 0 120px; }
+
+@media only screen and (min-width: 768px) and (max-width: 959px) { .wide-inner { width: 740px; margin: 0 auto; } }
+
+@media only screen and (max-width: 767px) { .wide-inner { width: 93%; margin: 0 auto; } }
+
 header h1 { width: 100%; font-size: 64px; }
