@@ -2,6 +2,14 @@
 title: ""
 ---
 
+# Links
+
+* [FAQ](./FAQ.html) &ensp; \| &ensp; [Rules](./rules.html)
+
+# News
+
+* 2017-07-13: Posted [FAQ](./FAQ.html) and [Rules](./rules.html).
+
 # Contest Announcement
 
 The ICFP Programming Contest 2018 is the 21st instance of the annual programming
