@@ -8,7 +8,7 @@ title: ""
 
 # News
 
-* 2017-07-13: Posted [FAQ](./FAQ.html) and [Rules](./rules.html).
+* 2018-07-13: Posted [FAQ](./FAQ.html) and [Rules](./rules.html).
 
 # Contest Announcement
 
