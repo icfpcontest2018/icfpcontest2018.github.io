@@ -8,7 +8,7 @@ title: ""
 
 # News
 
-* 2018-07-18: There is an unofficial [ICFP Meeting Point](https://icfpc-meeting-point.github.io/) app for finding teams and contestants by location, [announced](https://twitter.com/sannysanoff/status/1019618988949692416) on Twitter.
+* 2018-07-18: There is an unofficial [ICFPC Meeting Point](https://icfpc-meeting-point.github.io/) app for finding teams and contestants by location, [announced](https://twitter.com/sannysanoff/status/1019618988949692416) on Twitter.
 * 2018-07-13: Posted [FAQ](./FAQ.html) and [Rules](./rules.html).
 
 # Contest Announcement
