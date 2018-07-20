@@ -97,8 +97,8 @@ the right, top, far voxel of the matrix.
 A **coordinate difference** _d_ specifies the relative position of one
 coordinate to another and is written _<dx, dy, dz>_, where _dx_, _dy_, and _dz_
 are (positive or negative) integers.  Adding distance _d = <dx, dy, dz>_ to
-coordinate _c = <x, y, z>_, written _c + d_, yields the coordinate _<x + dx, y +
-dy, z + dz>_.
+coordinate _c = (x, y, z)_, written _c + d_, yields the coordinate _(x + dx, y +
+dy, z + dz)_.
 
 The **Manhattan length** (or _L<sub>1</sub>_ norm) of a coordinate difference _d
 = <dx, dy, dz>_ is written _mlen(d)_ and defined as _|dx| + |dy| + |dz|_ (the
