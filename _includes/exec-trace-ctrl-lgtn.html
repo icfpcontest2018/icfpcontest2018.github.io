@@ -1,0 +1,29 @@
+<script>
+var tgtModelBData = null;
+var traceBData = null;
+(function () {
+  var execTrace = document.getElementById('execTrace');
+  function onStart() {
+    document.getElementById('stdout').innerHTML = "";
+    if (vis) { vis.setSize(8, 8, 8); };
+    execTrace.disabled = true;
+  }
+  function onSuccess() {
+    if (tgtModelBData && traceBData) {
+      execTrace.disabled = false;
+    }
+  }
+  mkLoadBDataFromFile
+  ('tgtModel',
+   function () { tgtModelBData = null; onStart(); },
+   function () { },
+   onSuccess,
+   function(data) { tgtModelBData = data; });
+  mkLoadBDataFromFile
+  ('trace',
+   function () { traceBData = null; onStart(); },
+   function () { },
+   onSuccess,
+   function(data) { traceBData = data; });
+})();
+</script>

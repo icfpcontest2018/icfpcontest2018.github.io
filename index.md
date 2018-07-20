@@ -2,12 +2,22 @@
 title: ""
 ---
 
+<div id="glcanvas_container" style="position: relative; width: 480px; height: 480px; margin-bottom: 30px;">
+  <canvas id="glcanvas" />
+</div>
+
 # Links
 
-* [FAQ](./FAQ.html) &ensp; \| &ensp; [Rules](./rules.html)
+* Lightning Division (ends [Saturday 21 July 2018 16:00 UTC](https://www.timeanddate.com/worldclock/fixedtime.html?msg=ICFP+Programming+Contest+2018+%28end+of+lightning+division%29&iso=20180721T16))
+  * [Task Description](/lgtn/task-description.html) &ensp; \| &ensp; [`problemsL.zip`](/assets/problemsL.zip) &ensp; \| &ensp; [`dfltTracesL.zip`](/assets/dfltTracesL.zip)
+  * [View Model](/view-model.html) &ensp; \| &ensp; [Check Trace](/lgtn/chk-trace.html) &ensp; \| &ensp; [Exec Trace](/lgtn/exec-trace.html) &ensp; \| &ensp; [Exec Trace (no visualizer)](/lgtn/exec-trace-novis.html)
+  <!-- * [Live Standings](/lgtn/live-standings.html) -->
+* [Register](/register.html) &ensp; \| &ensp; [Profile](/profile.html) &ensp; \| &ensp; [Submit](/submit.html) &ensp; \| &ensp; [Submission Acks](/submission-acks.html)
+* [FAQ](./FAQ.html) &ensp; \| &ensp; [Rules](./rules.html) &ensp; \| &ensp; [Acknowlegements](/acknowledgements.html)
 
 # News
 
+* 2018-07-20T16:00Z: The ICFP Programming Contest 2018 has started!  The Lightning Division [Task Description](/lgtn/task-description.html) has been posted.
 * 2018-07-18: There is an unofficial [ICFPC Meeting Point](https://icfpc-meeting-point.github.io/) app for finding teams and contestants by location, [announced](https://twitter.com/sannysanoff/status/1019618988949692416) on Twitter.
 * 2018-07-13: Posted [FAQ](./FAQ.html) and [Rules](./rules.html).
 
@@ -49,3 +59,28 @@ In addition, the organizers will declare during the conference that:
 ## Contest Organizers
 
 The ICFP Programming Contest 2018 is organized by [Matthew Fluet](https://www.cs.rit.edu/~mtf) and colleagues at the [Rochester Institute of Technology](https://www.rit.edu).
+
+
+
+<script>
+var vis = null;
+</script>
+<script src="{{ '/assets/js/three.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/Detector.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/stats.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/visualizer.js' | relative_url }}"></script>
+<script>
+(function () {
+  if (! Detector.webgl) {
+    const glcanvasContainer = document.getElementById('glcanvas_container');
+    const glcanvas = document.getElementById('glcanvas');
+    glcanvasContainer.removeChild(glcanvas);
+    var demoScreenshot = document.createElement("IMG");
+    demoScreenshot.src="{{ '/assets/images/demo.png' | relative_url }}";
+    glcanvasContainer.appendChild(demoScreenshot);
+  } else {
+    vis = initVisualizer({stats: false, screenshot: false, controls: false});
+  }
+})();
+</script>
+<script src="{{ '/assets/js/demo.js' | relative_url }}"></script>

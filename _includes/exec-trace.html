@@ -1,0 +1,48 @@
+{% if page.tags contains 'lgtn' %}
+{% include exec-trace-form-lgtn.html %}
+{% endif %}
+{% if page.tags contains 'full' %}
+{% include exec-trace-form-full.html %}
+{% endif %}
+
+{% if page.tags contains 'vis' %}
+<hr>
+<div id="glcanvas_container" style="position: relative;">
+  <canvas id="glcanvas" tabindex="0" />
+</div>
+{% endif %}
+
+<hr>
+<pre id="stdout"></pre>
+
+
+<script>
+var vis = null;
+</script>
+{% if page.tags contains 'vis' %}
+<script src="{{ '/assets/js/three.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/Detector.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/stats.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/visualizer.js' | relative_url }}"></script>
+<script>
+(function () {
+  if (! Detector.webgl) {
+    const glcanvasContainer = document.getElementById('glcanvas_container');
+    const glcanvas = document.getElementById('glcanvas');
+    glcanvasContainer.removeChild(glcanvas);
+    var warning = Detector.getWebGLErrorMessage();
+    glcanvasContainer.appendChild(warning);
+  } else {
+    vis = initVisualizer({stats: true, screenshot: true, controls: true});
+  }
+})();
+</script>
+{% endif %}
+<script src="{{ '/assets/js/load-file-utils.js' | relative_url }}"></script>
+{% if page.tags contains 'lgtn' %}
+{% include exec-trace-ctrl-lgtn.html %}
+{% endif %}
+{% if page.tags contains 'full' %}
+{% include exec-trace-ctrl-full.html %}
+{% endif %}
+<script src="{{ '/assets/js/exec-trace.js' | relative_url }}"></script>

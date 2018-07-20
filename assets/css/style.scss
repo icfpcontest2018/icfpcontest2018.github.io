@@ -60,3 +60,27 @@ form input[type="button"]:disabled {
 form input[type="button"]:enabled {
     color: #000000;
 }
+
+/* *************************************************************** */
+
+.fig-left {
+    width:200px;
+    border-color:black; border-style:solid;
+    padding:5px;
+    float:left; margin-right:20px; margin-bottom:5px;
+    font-size:smaller;
+    text-align:center;
+}
+
+/* *************************************************************** */
+
+#glcanvas_container {
+    margin: auto;
+    width: 100%;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto 0 auto;
+}
