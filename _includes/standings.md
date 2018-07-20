@@ -30,11 +30,9 @@
 
 # {{page.title}} at [{{date_time}}](https://www.timeanddate.com/worldclock/fixedtime.html?iso={{iso}})
 
-**Note**: Live standings may be calculated using only a (random) subset of the problems.
-
-**Note**: Live standings will be frozen 6hours before the end of the
+**Note**: Live standings may be calculated using only a (random) subset of the problems.  
+**Note**: Live standings will be frozen 6 hours before the end of the
 {% if page.tags contains 'lgtn' %}Lightning Division.{% endif %}{% if page.tags contains 'full' %}Full Contest.{% endif %}
-
 
 {% endif %}
 {% if page.tags contains 'final' %}
@@ -77,6 +75,8 @@
 ****
 
 ## By Problem
+
+**Note**: Scores for each problem are limited to the top 5 high scores.
 
 {% assign problemNums = data | map: "probNum" | uniq | sort | where_exp:"pn","pn != 'total'" %}
 
