@@ -200,7 +200,7 @@ The state of an active nanobot _bot_ is comprised of:
 
  * _bid_: the (unique) identifier (a positive integer)
  * _pos_: the position (a coordinate)
- * _seeds_: the set of identifiers available for fission
+ * _seeds_: the finite set of identifiers available for fission
 
 Furthermore, a system state is **well-formed** if it satisfies the following
 properties:
@@ -647,6 +647,7 @@ to
 
 Generate and submit nanobot traces to assemble target 3D models while minimizing
 energy used.
+The initial nanobot (the Build-a-Tron&nbsp;4000) has 19 seeds.
 
 ## Problems
 
