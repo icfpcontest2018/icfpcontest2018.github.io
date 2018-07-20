@@ -363,7 +363,7 @@ of any other nanobot were to "use" the current position of the nanobot.
    > _S.energy := S.energy + 2 * (mlen(sld<sub>1</sub>) + 2 + mlen(sld<sub>2</sub>))_  
 
    (The nanobot's position is updated and there is an energy cost proportional
-   the Manhattan length of the move.)
+   the Manhattan length of the move and a small "turning" cost.)
 
  * _**Fission** nd m_:
 
