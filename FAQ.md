@@ -23,7 +23,7 @@ layout: default
   issues](https://github.com/icfpcontest2018/icfpcontest2018.github.io/issues);
   please check if the question/clarification has already been raised among all
   (open and closed) [GitHub
-  issues](https://github.com/icfpcontest2018/icfpcontest2018.github.io/issues?q=is%3Aissue).
+  issues and pull requests](https://github.com/icfpcontest2018/icfpcontest2018.github.io/issues?q=).
   Team specific concerns (or general questions and clarifications from those
   without a GitHub account) may be sent to <icfpcontest2018@gmail.com>.  The
   contest organizers will also monitor tweets
