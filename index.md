@@ -17,6 +17,8 @@ title: ""
 
 # News
 
+* 2018-07-21T15:00Z: One hour left in the Lightning Division; remember, teams may only [submit](/submit.html) once every 15 minutes.  Please, don't abuse the submission system with repeated attempts within the 15 minute window; it makes it harder for other teams.
+  * A `Lock timeout: another process was holding the lock for too long.` error means high contention.
 * 2018-07-21T10:00Z: The Lightning Division [Live Standings](/lgtn/live-standings.html) have been frozen.
 * 2018-07-21T03:20Z: [Submission acknowledgments](/submission-acks.html) and [live standings](/lgtn/live-standings.html) should be updating once every 15 minutes.
 * 2018-07-20T20:20Z: Initial [submission acknowledgments](/submission-acks.html) and [live standings](/lgtn/live-standings.html) for the Lightning Division have been posted.
