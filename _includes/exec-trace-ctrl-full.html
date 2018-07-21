@@ -1,0 +1,63 @@
+<script>
+var srcModelBData = null;
+var tgtModelBData = null;
+var traceBData = null;
+(function () {
+  var srcModelEmpty = document.getElementById('srcModelEmpty');
+  var tgtModelEmpty = document.getElementById('tgtModelEmpty');
+  var execTrace = document.getElementById('execTrace');
+  function onStart() {
+    document.getElementById('stdout').innerHTML = "";
+    if (vis) { vis.setSize(8, 8, 8); };
+    execTrace.disabled = true;
+  }
+  function onSuccess() {
+    if ((srcModelBData || srcModelEmpty.checked) &&
+        (tgtModelBData || tgtModelEmpty.checked) &&
+        !(srcModelEmpty.checked && tgtModelEmpty.checked) &&
+        traceBData) {
+      execTrace.disabled = false;
+    }
+  }
+  mkLoadBDataFromFile
+  ('srcModel',
+   function () { srcModelBData = null; onStart(); },
+   function () { },
+   onSuccess,
+   function(data) { srcModelBData = data; });
+  document.getElementById('srcModelEmpty').addEventListener('change',
+    function (e) { onStart();
+                   if (e.target.checked) {
+                     srcModelBData = null;
+                     document.getElementById('srcModelFileIn').disabled = true;
+                     document.getElementById('srcModelFileIn').value = "";
+                   } else {
+                     document.getElementById('srcModelFileIn').disabled = false;
+                   }
+                   onSuccess();
+    }, false);
+  mkLoadBDataFromFile
+  ('tgtModel',
+   function () { tgtModelBData = null; onStart(); },
+   function () { },
+   onSuccess,
+   function(data) { tgtModelBData = data; });
+  document.getElementById('tgtModelEmpty').addEventListener('change',
+    function (e) { onStart();
+                   if (e.target.checked) {
+                     tgtModelBData = null;
+                     document.getElementById('tgtModelFileIn').disabled = true;
+                     document.getElementById('tgtModelFileIn').value = "";
+                   } else {
+                     document.getElementById('tgtModelFileIn').disabled = false;
+                   }
+                   onSuccess();
+    }, false);
+  mkLoadBDataFromFile
+  ('trace',
+   function () { traceBData = null; onStart(); },
+   function () { },
+   onSuccess,
+   function(data) { traceBData = data; });
+})();
+</script>
