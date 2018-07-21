@@ -17,6 +17,7 @@ title: ""
 
 # News
 
+* 2018-07-21T10:00Z: The Lightning Division [Live Standings](/lgtn/live-standings.html) have been frozen.
 * 2018-07-21T03:20Z: [Submission acknowledgments](/submission-acks.html) and [live standings](/lgtn/live-standings.html) should be updating once every 15 minutes.
 * 2018-07-20T20:20Z: Initial [submission acknowledgments](/submission-acks.html) and [live standings](/lgtn/live-standings.html) for the Lightning Division have been posted.
 * 2018-07-20T16:00Z: The ICFP Programming Contest 2018 has started!  The Lightning Division [Task Description](/lgtn/task-description.html) has been posted.
