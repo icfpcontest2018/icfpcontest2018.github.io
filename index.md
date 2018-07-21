@@ -21,6 +21,7 @@ title: ""
 
 # News
 
+* 2018-07-21T19:10Z: Initial [submission acknowledgments](/submission-acks.html) and [live standings](/full/live-standings.html) for the Full Contest have been posted; should be updating once every 15 minutes.
 * 2018-07-21T16:00Z: The Full Contest [Updated Task Description](/full/task-description.html) has been posted.
 * 2018-07-21T15:59Z: If you did not get a submission in after 15:45, then please continue to try to submit; we will accept for a few minutes after the deadline to accommodate the timeouts.
 * 2018-07-21T15:00Z: One hour left in the Lightning Division; remember, teams may only [submit](/submit.html) once every 15 minutes.  Please, don't abuse the submission system with repeated attempts within the 15 minute window; it makes it harder for other teams.
