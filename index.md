@@ -8,6 +8,10 @@ title: ""
 
 # Links
 
+* Full Contest (ends [Monday 23 July 2018 16:00 UTC](https://www.timeanddate.com/worldclock/fixedtime.html?msg=ICFP+Programming+Contest+2018+%28end+of+full+contest%29&iso=20180723T16))
+  * [Live Standings](/full/live-standings.html)
+  * [Updated Task Description](/full/task-description.html) &ensp; \| &ensp; [`problemsF.zip`](/assets/problemsF.zip) &ensp; \| &ensp; [`dfltTracesF.zip`](/assets/dfltTracesF.zip)
+  * [View Model](/view-model.html) &ensp; \| &ensp; [Check Trace](/full/chk-trace.html) &ensp; \| &ensp; [Exec Trace](/full/exec-trace.html) &ensp; \| &ensp; [Exec Trace (no visualizer)](/full/exec-trace-novis.html)
 * Lightning Division (ends [Saturday 21 July 2018 16:00 UTC](https://www.timeanddate.com/worldclock/fixedtime.html?msg=ICFP+Programming+Contest+2018+%28end+of+lightning+division%29&iso=20180721T16))
   * [Live Standings](/lgtn/live-standings.html)
   * [Task Description](/lgtn/task-description.html) &ensp; \| &ensp; [`problemsL.zip`](/assets/problemsL.zip) &ensp; \| &ensp; [`dfltTracesL.zip`](/assets/dfltTracesL.zip)
@@ -17,6 +21,8 @@ title: ""
 
 # News
 
+* 2018-07-21T16:00Z: The Full Contest [Updated Task Description](/full/task-description.html) has been posted.
+* 2018-07-21T15:00Z: One hour left in the Lightning Division; remember, teams may only [submit](/submit.html) once every 15 minutes.
 * 2018-07-21T10:00Z: The Lightning Division [Live Standings](/lgtn/live-standings.html) have been frozen.
 * 2018-07-21T03:20Z: [Submission acknowledgments](/submission-acks.html) and [live standings](/lgtn/live-standings.html) should be updating once every 15 minutes.
 * 2018-07-20T20:20Z: Initial [submission acknowledgments](/submission-acks.html) and [live standings](/lgtn/live-standings.html) for the Lightning Division have been posted.
