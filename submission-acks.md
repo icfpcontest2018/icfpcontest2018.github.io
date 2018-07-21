@@ -48,11 +48,11 @@ unzip -P ${privateID} -qt submission.zip
 
 ## By Team
 
-{% for publicID in publicIDs %}[Team&nbsp;{{pubidToName[publicID]}}](#team-{{publicID}})&emsp;&emsp;{% endfor %}
+{% for publicID in publicIDs %}[Team&nbsp;<span markdown="0">{{pubidToName[publicID] | xml_escape}}</span>](#team-{{publicID}})&emsp;&emsp;{% endfor %}
 
 {% for publicID in publicIDs %}
 
-<h3 id="team-{{publicID}}">Team {{pubidToName[publicID]}}</h3>
+<h3 id="team-{{publicID}}">Team <span markdown="0">{{pubidToName[publicID] | xml_escape}}</span></h3>
 
 <table>
     <thead>
