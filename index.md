@@ -22,7 +22,7 @@ title: ""
 # News
 
 * 2018-07-21T16:00Z: The Full Contest [Updated Task Description](/full/task-description.html) has been posted.
-* 2018-07-21T15:59Z: If you did not get submission in after 15:45, then please continue to try to submit; we will accept for a few minutes after the deadline to accommodate the timeouts.
+* 2018-07-21T15:59Z: If you did not get a submission in after 15:45, then please continue to try to submit; we will accept for a few minutes after the deadline to accommodate the timeouts.
 * 2018-07-21T15:00Z: One hour left in the Lightning Division; remember, teams may only [submit](/submit.html) once every 15 minutes.  Please, don't abuse the submission system with repeated attempts within the 15 minute window; it makes it harder for other teams.
   * A `Lock timeout: another process was holding the lock for too long.` error means high contention.
 * 2018-07-21T10:00Z: The Lightning Division [Live Standings](/lgtn/live-standings.html) have been frozen.
