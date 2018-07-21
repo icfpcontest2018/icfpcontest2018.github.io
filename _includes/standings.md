@@ -19,6 +19,7 @@
 
 {% if page.tags contains 'live' %}
 {% assign ts = data | map: "timestamp" | uniq | sort | last %}
+{% if ts %}
 {% assign ts_YYYY = ts | slice: 0, 4 %}
 {% assign ts_MM = ts | slice: 4, 2 %}
 {% assign ts_DD = ts | slice: 6, 2 %}
@@ -29,6 +30,9 @@
 {% assign iso = ts_YYYY | append: "-" | append: ts_MM | append: "-" | append: ts_DD | append: "T" | append: ts_hh | append: ":" | append: ts_mm | append: ":" | append: ts_ss | append: "Z" %}
 
 # {{page.title}} at [{{date_time}}](https://www.timeanddate.com/worldclock/fixedtime.html?iso={{iso}})
+{% else %}
+# {{page.title}}
+{% endif %}
 
 **Note**: Live standings may be calculated using only a (random) subset of the problems.  
 **Note**: Live standings will be frozen 6 hours before the end of the
