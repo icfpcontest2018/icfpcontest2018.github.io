@@ -52,20 +52,33 @@
 
 ## Totals
 
-<table style="width:700px">
+<table>
     <thead>
-        <th style="width:50%">Team</th>
-        <th style="width:30%">Total Energy</th>
-        <th style="width:20%">Total Score</th>
+        <th style="width:55px">Rank</th>
+        <th style="width:330px">Team</th>
+        <th style="width:220px">Total Energy</th>
+        <th style="width:110px">Total Score</th>
     </thead>
     <tbody>
     {% assign data_ = data | where:"probNum",'total' %}
+    {% assign lastScore = data_[0]["score"] | plus: 1 %}
+    {% assign rank = 0 %}
+    {% assign rinc = 1 %}
     {% for row in data_ %}
-        {% if row["score"] != "0" %}
+        {% assign score = row["score"] | plus: 0 %}
+        {% if score != 0 %}
+            {% if lastScore > score %}
+                {% assign rank = rank | plus: rinc %}
+                {% assign lastScore = score %}
+                {% assign rinc = 1 %}
+            {% else %}
+                {% assign rinc = rinc | plus: 1 %}
+            {% endif %}
         <tr>
-            <td style="text-align:left"><pre>{{ pubidToName[row["publicID"]] }}</pre></td>
+            <td style="text-align:right"><pre>{{ rank }}</pre></td>
+            <td style="text-align:left"><pre>{{ pubidToName[row["publicID"]] | truncate: 35 }}</pre></td>
             <td style="text-align:right"><pre>{{ row["energy"] }}</pre></td>
-            <td style="text-align:right"><pre>{{ row["score"] }}</pre></td>
+            <td style="text-align:right"><pre>{{ score }}</pre></td>
         </tr>
         {% endif %}
     {% endfor %}
@@ -86,17 +99,17 @@
 
 ### Problem {{problemNum}}
 
-<table style="width:700px">
+<table>
     <thead>
-        <th style="width:50%">Team</th>
-        <th style="width:30%">Total Energy</th>
-        <th style="width:20%">Total Score</th>
+        <th style="width:330px">Team</th>
+        <th style="width:220px">Total Energy</th>
+        <th style="width:110px">Total Score</th>
     </thead>
     <tbody>
     {% assign data_ = data | where:"probNum",problemNum %}
     {% for row in data_ limit:5 %}
         <tr>
-            <td style="text-align:left"><pre>{{ pubidToName[row["publicID"]] }}</pre></td>
+            <td style="text-align:left"><pre>{{ pubidToName[row["publicID"]] | truncate: 35 }}</pre></td>
             <td style="text-align:right"><pre>{{ row["energy"] }}</pre></td>
             <td style="text-align:right"><pre>{{ row["score"] }}</pre></td>
         </tr>
@@ -118,11 +131,11 @@
 
 <h3 id="team-{{publicID}}">Team {{pubidToName[publicID]}}</h3>
 
-<table style="width:560px">
+<table style="width:386px">
     <thead>
-        <th style="width:37.5%">Problem</th>
-        <th style="width:37.5%">Team Energy</th>
-        <th style="width:25%">Team Score</th>
+        <th style="width:110px">Problem</th>
+        <th style="width:330px">Team Energy</th>
+        <th style="width:110px">Team Score</th>
     </thead>
     <tbody>
     {% assign data_ = data | where:"publicID",publicID %}
