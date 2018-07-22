@@ -21,6 +21,7 @@ title: ""
 
 # News
 
+* 2018-07-22T03:40Z: Added a visual distinction between _Low_ harmonics (darker floor) and _High_ harmonics (lighter floor).
 * 2018-07-22T01:50Z: The Full Contest [Live Standings](/full/live-standings.html) are resumed and should be updating once every 15 minutes.
 * 2018-07-22T00:30Z: The Full Contest [Live Standings](/full/live-standings.html) are paused while investigating slow updates; [submission acknowledgments](/submission-acks.html) are resumed and should be updating once every 15 minutes.
 * 2018-07-21T19:10Z: Initial [submission acknowledgments](/submission-acks.html) and [live standings](/full/live-standings.html) for the Full Contest have been posted; should be updating once every 15 minutes.
