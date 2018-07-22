@@ -16,11 +16,13 @@ title: ""
   * [Live Standings](/lgtn/live-standings.html)
   * [Task Description](/lgtn/task-description.html) &ensp; \| &ensp; [`problemsL.zip`](/assets/problemsL.zip) &ensp; \| &ensp; [`dfltTracesL.zip`](/assets/dfltTracesL.zip)
   * [View Model](/view-model.html) &ensp; \| &ensp; [Check Trace](/lgtn/chk-trace.html) &ensp; \| &ensp; [Exec Trace](/lgtn/exec-trace.html) &ensp; \| &ensp; [Exec Trace (no visualizer)](/lgtn/exec-trace-novis.html)
-* [Register](/register.html) &ensp; \| &ensp; [Profile](/profile.html) &ensp; \| &ensp; [Submit](/submit.html) &ensp; \| &ensp; [Submission Acks](/submission-acks.html)
+* [Register](/register.html) &ensp; \| &ensp; [Profile](/profile.html) &ensp; \| &ensp; [Submit](/submit.html) &ensp; \| &ensp; [Secondary Submit](/submit-secondary.html) &ensp; \| &ensp; [Submission Acks](/submission-acks.html)
 * [FAQ](./FAQ.html) &ensp; \| &ensp; [Rules](./rules.html) &ensp; \| &ensp; [Acknowlegements](/acknowledgements.html)
 
 # News
 
+* 2018-07-22T21:00Z: Prepared a [secondary submission system](/submit-secondary.html).
+  * Details: Due to the high number of `Lock timeout` errors near the Lightning Division deadline, we think it prudent to offer a secondary submission system for use at the Full Contest deadline.  The secondary submission system will be enabled shortly after the freezing of the Full Contest [Live Standings](/full/live-standings.html).  The secondary submission system takes exactly the same information (Team Private ID, Submission URL, Submission SHA256 Checksum), can be automated, and uses the same [submission acknowledgments](/submission-acks.html); however, it does not reject submissions with an unregistered Team Private ID (such submissions will be silently lost) and it does not reject repeated submissions within a 15 minute window.  As a consequence, we will allow unlimited submissions during the last 2 hours via the secondary submission system (but don't dare change the primary submission system to relax this rule).  Teams may submit to either system or both systems.  Note that there may nonetheless be high contention on the primary submission system, as well as the [registration](/register.html) and [profile](/profile.html) systems, during this period.  Teams that have not yet [registered](/register.html) should do so well-before the Full Contest deadline.  We will not accept submissions via e-mail, Twitter, IRC, etc.
 * 2018-07-22T03:40Z: Added a visual distinction between _Low_ harmonics (darker floor) and _High_ harmonics (lighter floor).
 * 2018-07-22T01:50Z: The Full Contest [Live Standings](/full/live-standings.html) are resumed and should be updating once every 15 minutes.
 * 2018-07-22T00:30Z: The Full Contest [Live Standings](/full/live-standings.html) are paused while investigating slow updates; [submission acknowledgments](/submission-acks.html) are resumed and should be updating once every 15 minutes.
