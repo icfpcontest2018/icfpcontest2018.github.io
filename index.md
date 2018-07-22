@@ -21,6 +21,7 @@ title: ""
 
 # News
 
+* 2018-07-22T00:30Z: The Full Contest [Live Standings](/full/live-standings.html) are paused while investigating slow updates; [submission acknowledgments](/submission-acks.html) are resumed and should be updating once every 15 minutes.
 * 2018-07-21T19:10Z: Initial [submission acknowledgments](/submission-acks.html) and [live standings](/full/live-standings.html) for the Full Contest have been posted; should be updating once every 15 minutes.
 * 2018-07-21T16:00Z: The Full Contest [Updated Task Description](/full/task-description.html) has been posted.
 * 2018-07-21T15:59Z: If you did not get a submission in after 15:45, then please continue to try to submit; we will accept for a few minutes after the deadline to accommodate the timeouts.
