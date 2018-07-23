@@ -21,6 +21,7 @@ title: ""
 
 # News
 
+* 2018-07-23T16:00Z: The ICFP Programming Contest 2018 has ended.  Thanks to all contestants and teams for their participation!  Remember to complete your [profile](/profile.html) with complete team information and source code URL and SHA256 checksum.
 * 2018-07-23T15:00Z: One hour left in the Full Contest.
   * To be considered for prizes, [within two hours of end of the contest](https://www.timeanddate.com/worldclock/fixedtime.html?msg=ICFP+Programming+Contest+2018+%28source+code+submission+deadline%29&iso=20180723T18), teams must update their [profile](/profile.html) with complete team information and submit the URL and SHA256 checksum of a single `.zip` archive with their source code, a `README.txt` file (brief directions for judges to build/run the solution; description of the solution approach; feedback about the contest; self-nomination for judges' prize; etc.), and any other supporting materials.
 * 2018-07-23T10:00Z: The Full Contest [Live Standings](/full/live-standings.html) have been frozen (and, with time, will be updated with scores from all problems).  The [secondary submission system](/submit-secondary.html) has been enabled.
