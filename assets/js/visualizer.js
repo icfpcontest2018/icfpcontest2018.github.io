@@ -287,8 +287,7 @@ function initVisualizer(config) {
     }
 
     var botMaterial = new THREE.MeshPhongMaterial({color: 0xBB8844, side: THREE.DoubleSide});
-    var bots = new THREE.Group();
-    objs.add(bots);
+    var bots = null;
     function botMove(bot, x, y, z) {
         bot.position.x = coordToPosX(x + 0.5);
         bot.position.y = coordToPosY(y + 0.5);
@@ -310,10 +309,27 @@ function initVisualizer(config) {
     };
 
     var matrixMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, side: THREE.DoubleSide});
-    var matrixGeometry = new THREE.Geometry();
-    var matrix = new THREE.Mesh(matrixGeometry, matrixMaterial);
-    matrix.castShadow = true;
-    matrix.receiveShadow = true;
+    var matrix = null;
+    const subMatrixSize = 16;
+    var subMatrices = null;
+
+    function regionNeedsUpdate(lox, loy, loz, hix, hiy, hiz) {
+        matrix.needsUpdate = true
+        const sy = Math.ceil((sizeY + 1) / subMatrixSize);
+        const sz = Math.ceil((sizeZ + 1) / subMatrixSize);
+        const loix = (lox - 1) / subMatrixSize | 0;
+        const loiy = (loy - 1) / subMatrixSize | 0;
+        const loiz = (loz - 1) / subMatrixSize | 0;
+        const hiix = ((hix + 2) / subMatrixSize);
+        const hiiy = ((hiy + 2) / subMatrixSize);
+        const hiiz = ((hiz + 2) / subMatrixSize);
+        for (var ix = loix; ix < hiix; ix++) {
+        for (var iy = loiy; iy < hiiy; iy++) {
+        for (var iz = loiz; iz < hiiz; iz++) {
+            const i = ix * sy * sz + iy * sz + iz;
+            subMatrices[i].needsUpdate = true;
+        }}}
+    }
 
     var matrixData = null;
     function getMatrix(x, y, z) {
@@ -324,22 +340,19 @@ function initVisualizer(config) {
         const i = x * sizeY * sizeZ + y * sizeZ + z;
         matrixData[i] = (b ? 1 : 0);
     }
-    var matrixGeometryNeedsUpdate = false;
-    function fillMatrix(lox, loy, loz, hix, hiy, hiz) {
+    function updMatrix(lox, loy, loz, hix, hiy, hiz, b) {
         for (var x = lox; x <= hix; x++) {
         for (var y = loy; y <= hiy; y++) {
         for (var z = loz; z <= hiz; z++) {
-            setMatrix (x, y, z, true);
+            setMatrix (x, y, z, b);
         }}}
-        matrixGeometryNeedsUpdate = true;
+        regionNeedsUpdate(lox, loy, loz, hix, hiy, hiz);
+    }
+    function fillMatrix(lox, loy, loz, hix, hiy, hiz) {
+        updMatrix(lox, loy, loz, hix, hiy, hiz, true);
     }
     function voidMatrix(lox, loy, loz, hix, hiy, hiz) {
-        for (var x = lox; x <= hix; x++) {
-        for (var y = loy; y <= hiy; y++) {
-        for (var z = loz; z <= hiz; z++) {
-            setMatrix (x, y, z, false);
-        }}}
-        matrixGeometryNeedsUpdate = true;
+        updMatrix(lox, loy, loz, hix, hiy, hiz, false);
     }
     function setMatrixFn (f) {
         for (var x = 0; x < sizeX; x++) {
@@ -347,7 +360,10 @@ function initVisualizer(config) {
         for (var z = 0; z < sizeZ; z++) {
             setMatrix (x, y, z, f ([x, y, z]));
         }}}
-        matrixGeometryNeedsUpdate = true;
+        matrix.needsUpdate = true;
+        for (i = 0; i < subMatrices.length; i++) {
+            subMatrices[i].needsUpdate = true;
+        }
     }
     /*
     function getMatrix(x, y, z) {
@@ -370,104 +386,126 @@ function initVisualizer(config) {
         }
     }
     */
-    var matrixHasFace = false;
-    function updateMatrixGeometry () {
-        if (! matrixGeometryNeedsUpdate) { return; }
-        var hasFace = false;
-        function addQuad(x, y, z, dx1, dy1, dz1, dx2, dy2, dz2) {
-            var n = matrixGeometry.vertices.length;
-            function addVertex(x, y, z) {
-                matrixGeometry.vertices.push(
-                    new THREE.Vector3(coordToPosX(x),
-                                      coordToPosY(y),
-                                      coordToPosZ(z))
-                );
-            }
-            addVertex(x, y, z);
-            addVertex(x + dx1, y + dy1, z + dz1);
-            addVertex(x + dx2, y + dy2, z + dz2);
-            addVertex(x + dx1 + dx2, y + dy1 + dy2, z + dz1 + dz2);
-            matrixGeometry.faces.push(new THREE.Face3(n, n+1, n+3));
-            matrixGeometry.faces.push(new THREE.Face3(n, n+2, n+3));
-            hasFace = true;
+    function addQuad(vertices, faces, x, y, z, dx1, dy1, dz1, dx2, dy2, dz2) {
+        var n = vertices.length;
+        function addVertex(x, y, z) {
+            vertices.push(
+                new THREE.Vector3(coordToPosX(x),
+                                  coordToPosY(y),
+                                  coordToPosZ(z))
+            );
         }
-        matrixGeometry.vertices.length = 0;
-        matrixGeometry.faces.length = 0;
-        if (loX < hiX) {
-        for (x = loX; x <= hiX; x++) {
-        for (y = loY; y < hiY; y++) {
-        for (z = loZ; z < hiZ; z++) {
-            function chk(z) {
-                return (((x == loX) && (getMatrix(x, y, z))) ||
-                        ((x == hiX) && (getMatrix(x - 1, y, z))) ||
-                        ((x > loX) && (x < hiX) && (getMatrix(x, y, z) != getMatrix(x - 1, y, z))));
+        addVertex(x, y, z);
+        addVertex(x + dx1, y + dy1, z + dz1);
+        addVertex(x + dx2, y + dy2, z + dz2);
+        addVertex(x + dx1 + dx2, y + dy1 + dy2, z + dz1 + dz2);
+        faces.push(new THREE.Face3(n, n+1, n+3));
+        faces.push(new THREE.Face3(n, n+2, n+3));
+    }
+    function tile(loU, hiU, loV, hiV, loW, hiW, getMatrix, addQuad) {
+        for (u = loU; u <= hiU; u++) {
+        for (v = loV; v < hiV; v++) {
+        for (w = loW; w < hiW; w++) {
+            function chk(w) {
+                return (getMatrix(u, v, w) != getMatrix(u-1, v, w));
             }
-            if (chk(z)) {
-                var dz = 1;
-                while ((z + dz < hiZ) && chk(z + dz)) {
-                    dz += 1;
+            if (chk(w)) {
+                var dw = 1;
+                while ((w + dw < hiW) && chk(w + dw)) {
+                    dw += 1;
                 }
-                addQuad(x, y, z, 0, 1, 0, 0, 0, dz);
-                z += dz - 1;
+                addQuad(u, v, w, 0, 1, 0, 0, 0, dw);
+                w += dw - 1;
             }
-        }}}}
-        if (loY < hiY) {
-        for (y = loY; y <= hiY; y++) {
-        for (x = loX; x < hiX; x++) {
-        for (z = loZ; z < hiZ; z++) {
-            function chk(z) {
-                return (((y > 0) && (y == loY) && (getMatrix(x, y, z))) ||
-                        ((y == hiY) && (getMatrix(x, y - 1, z))) ||
-                        ((y > loY) && (y < hiY) &&
-                         (getMatrix(x, y, z) != getMatrix(x, y - 1, z))));
-            }
-            if (chk(z)) {
-                var dz = 1;
-                while ((z + dz < hiZ) && chk(z + dz)) {
-                    dz += 1;
-                }
-                addQuad(x, y, z, 1, 0, 0, 0, 0, dz);
-                z += dz - 1;
-            }
-        }}}}
-        if (loZ < hiZ) {
-        for (z = loZ; z <= hiZ; z++) {
-        for (y = loY; y < hiY; y++) {
-        for (x = loX; x < hiX; x++) {
-            function chk(x) {
-                return (((z == loZ) && (getMatrix(x, y, z))) ||
-                        ((z == hiZ) && (getMatrix(x, y, z - 1))) ||
-                        ((z > loZ) && (z < hiZ) &&
-                         (getMatrix(x, y, z) != getMatrix(x, y, z - 1))));
-            }
-            if (chk(x)) {
-                var dx = 1;
-                while ((x + dx < hiX) && chk(x + dx)) {
-                    dx += 1;
-                }
-                addQuad(x, y, z, dx, 0, 0, 0, 1, 0);
-                x += dx - 1;
-            }
-        }}}}
-        if (hasFace) {
-            matrixGeometry.mergeVertices();
-            matrixGeometry.computeFaceNormals();
-            matrixGeometry.verticesNeedUpdate = true;
-            matrixGeometry.elementsNeedUpdate = true;
-            matrixGeometry.normalsNeedUpdate = true;
-            matrixGeometry.computeBoundingBox();
-            matrixGeometry.computeBoundingSphere();
-            matrixGeometryNeedsUpdate = false;
-            if (! matrixHasFace) {
-                objs.add(matrix);
-                matrixHasFace = true;
+        }}}
+    }
+    function updateSubMatrixGeometry (ix, iy, iz) {
+        const sy = Math.ceil((sizeY + 1) / subMatrixSize);
+        const sz = Math.ceil((sizeZ + 1) / subMatrixSize);
+        const i = ix * sy * sz + iy * sz + iz;
+        const subMatrix = subMatrices[i];
+        if (! subMatrix.needsUpdate) { return; }
+        const subMatrixGeometry = subMatrix.geometry;
+        subMatrixGeometry.vertices.length = 0;
+        subMatrixGeometry.faces.length = 0;
+
+        const loLX = ix * subMatrixSize;
+        const hiLX = Math.min((ix + 1) * subMatrixSize, sizeX);
+        const loLY = iy * subMatrixSize;
+        const hiLY = Math.min((iy + 1) * subMatrixSize, sizeY);
+        const loLZ = iz * subMatrixSize;
+        const hiLZ = Math.min((iz + 1) * subMatrixSize, sizeZ);
+
+        tile(loLX, hiLX, loLY, hiLY, loLZ, hiLZ,
+             function (x, y, z) {
+                 return ((loX <= x && x < hiX &&
+                          loY <= y && y < hiY &&
+                          loZ <= z && z < hiZ) &&
+                         getMatrix (x, y, z));
+             },
+             function (x, y, z, dx1, dy1, dz1, dx2, dy2, dz2) {
+                 addQuad (subMatrixGeometry.vertices, subMatrixGeometry.faces,
+                          x, y, z, dx1, dy1, dz1, dx2, dy2, dz2);
+             });
+        tile(loLY, hiLY, loLX, hiLX, loLZ, hiLZ,
+             function (y, x, z) {
+                 if (loX <= x && x < hiX &&
+                     loZ <= z && z < hiZ) {
+                     if ((y == -1) && (loY == 0) && (hiY > 0)) {
+                         return getMatrix (x, 0, z);
+                     } else if (loY <= y && y < hiY) {
+                         return getMatrix (x, y, z);
+                     } else {
+                         return false;
+                     }
+                 } else {
+                     return false;
+                 }
+             },
+             function (y, x, z, dy1, dx1, dz1, dy2, dx2, dz2) {
+                 addQuad (subMatrixGeometry.vertices, subMatrixGeometry.faces,
+                          x, y, z, dx1, dy1, dz1, dx2, dy2, dz2);
+             });
+        tile(loLZ, hiLZ, loLY, hiLY, loLX, hiLX,
+             function (z, y, x) {
+                 return ((loX <= x && x < hiX &&
+                          loY <= y && y < hiY &&
+                          loZ <= z && z < hiZ) &&
+                         getMatrix (x, y, z));
+             },
+             function (z, y, x, dz1, dy1, dx1, dz2, dy2, dx2) {
+                 addQuad (subMatrixGeometry.vertices, subMatrixGeometry.faces,
+                          x, y, z, dx1, dy1, dz1, dx2, dy2, dz2);
+             });
+        if (subMatrixGeometry.faces.length != 0) {
+            subMatrixGeometry.mergeVertices();
+            subMatrixGeometry.computeFaceNormals();
+            subMatrixGeometry.verticesNeedUpdate = true;
+            subMatrixGeometry.elementsNeedUpdate = true;
+            subMatrixGeometry.normalsNeedUpdate = true;
+            subMatrixGeometry.computeBoundingBox();
+            subMatrixGeometry.computeBoundingSphere();
+            if (! subMatrix.parent) {
+                matrix.add(subMatrix);
             }
         } else {
-            if (matrixHasFace) {
-                objs.remove(matrix);
-                matrixHasFace = false;
+            if (subMatrix.parent) {
+                matrix.remove(subMatrix);
             }
         }
+        subMatrix.needsUpdate = false;
+    }
+    function updateMatrixGeometry() {
+        if (! matrix.needsUpdate) { return; }
+        const hiix = (sizeX + 1) / subMatrixSize;
+        const hiiy = (sizeY + 1) / subMatrixSize;
+        const hiiz = (sizeZ + 1) / subMatrixSize;
+        for (ix = 0; ix < hiix; ix++) {
+        for (iy = 0; iy < hiiy; iy++) {
+        for (iz = 0; iz < hiiz; iz++) {
+            updateSubMatrixGeometry (ix, iy, iz);
+        }}}
+        matrix.needsUpdate = false;
     }
 
     function reset() {
@@ -488,7 +526,10 @@ function initVisualizer(config) {
         loZLimit.position.z = coordToPosZ(loZ);
         hiZ = sizeZ;
         hiZLimit.position.z = coordToPosZ(hiZ);
-        matrixGeometryNeedsUpdate = true;
+        for (i = 0; i < subMatrices.length; i++) {
+            subMatrices[i].needsUpdate = true;
+        }
+        matrix.needsUpdate = true;
     }
 
     function setSize(sizeX_, sizeY_, sizeZ_) {
@@ -508,18 +549,35 @@ function initVisualizer(config) {
 
         factor = scale / size;
 
-        reset();
-
-        resizeFloor();
-        resizeLimits();
-
-        const dim = sizeX_ * sizeY_ * sizeZ_;
-        matrixData = new Uint8Array(dim);
-        matrixGeometryNeedsUpdate = true;
-
         objs.remove(bots);
         bots = new THREE.Group();
         objs.add(bots);
+
+        const dim = sizeX_ * sizeY_ * sizeZ_;
+        matrixData = new Uint8Array(dim);
+        objs.remove(matrix);
+        matrix = new THREE.Group();
+        matrix.needsUpdate = true;
+        objs.add(matrix);
+        subMatrices = new Array();
+        const hiix = (sizeX_ + 1) / subMatrixSize;
+        const hiiy = (sizeY_ + 1) / subMatrixSize;
+        const hiiz = (sizeZ_ + 1) / subMatrixSize;
+        for (ix = 0; ix < hiix; ix++) {
+        for (iy = 0; iy < hiiy; iy++) {
+        for (iz = 0; iz < hiiz; iz++) {
+            var subMatrixGeometry = new THREE.Geometry();
+            var subMatrix = new THREE.Mesh(subMatrixGeometry, matrixMaterial);
+            subMatrix.castShadow = true;
+            subMatrix.receiveShadow = true;
+            subMatrix.needsUpdate = true;
+            subMatrices.push(subMatrix);
+        }}}
+
+        reset();
+
+        resizeLimits();
+        resizeFloor();
     }
 
 
@@ -612,57 +670,38 @@ function initVisualizer(config) {
             objs.rotation.y += Math.PI / steps;
         }
 
+
+        function updateX (loX, hiX) { regionNeedsUpdate (loX, loY, loZ, hiX, hiY, hiZ); }
+        function updateY (loY, hiY) { regionNeedsUpdate (loX, loY, loZ, hiX, hiY, hiZ); }
+        function updateZ (loZ, hiZ) { regionNeedsUpdate (loX, loY, loZ, hiX, hiY, hiZ); }
+
         // X Limits
         if (e.key == 'v') {
             if (loX > 0) {
                 loX -= 1;
                 loXLimit.position.x = coordToPosX(loX);
-                for (y = loY; y < hiY; y++) {
-                for (z = loZ; z < hiZ; z++) {
-                    if (getMatrix(loX, y, z)) {
-                        matrixGeometryNeedsUpdate = true;
-                        return;
-                    }
-                }}
+                updateX(loX, loX + 1);
             }
         }
         if (e.key == 'b') {
             if (loX < hiX) {
                 loX += 1;
                 loXLimit.position.x = coordToPosX(loX);
-                for (y = loY; y < hiY; y++) {
-                for (z = loZ; z < hiZ; z++) {
-                    if (getMatrix(loX - 1, y, z)) {
-                        matrixGeometryNeedsUpdate = true;
-                        return;
-                    }
-                }}
+                updateX(loX - 1, loX);
             }
         }
         if (e.key == 'n') {
             if (hiX > loX) {
                 hiX -= 1;
                 hiXLimit.position.x = coordToPosX(hiX);
-                for (y = loY; y < hiY; y++) {
-                for (z = loZ; z < hiZ; z++) {
-                    if (getMatrix(hiX, y, z)) {
-                        matrixGeometryNeedsUpdate = true;
-                        return;
-                    }
-                }}
+                updateX(hiX, hiX + 1);
             }
         }
         if (e.key == 'm') {
             if (hiX < sizeX) {
                 hiX += 1;
                 hiXLimit.position.x = coordToPosX(hiX);
-                for (y = loY; y < hiY; y++) {
-                for (z = loZ; z < hiZ; z++) {
-                    if (getMatrix(hiX - 1, y, z)) {
-                        matrixGeometryNeedsUpdate = true;
-                        return;
-                    }
-                }}
+                updateX(hiX - 1, hiX);
             }
         }
 
@@ -671,52 +710,28 @@ function initVisualizer(config) {
             if (loY > 0) {
                 loY -= 1;
                 loYLimit.position.y = coordToPosY(loY);
-                for (x = loX; x < hiX; x++) {
-                for (z = loZ; z < hiZ; z++) {
-                    if (getMatrix(x, loY, z)) {
-                        matrixGeometryNeedsUpdate = true;
-                        return;
-                    }
-                }}
+                updateY(loY, loY + 1);
             }
         }
         if (e.key == 'j') {
             if (loY < hiY) {
                 loY += 1;
                 loYLimit.position.y = coordToPosY(loY);
-                for (x = loX; x < hiX; x++) {
-                for (z = loZ; z < hiZ; z++) {
-                    if (getMatrix(x, loY - 1, z)) {
-                        matrixGeometryNeedsUpdate = true;
-                        return;
-                    }
-                }}
+                updateY(loY - 1, loY);
             }
         }
         if (e.key == 'k') {
             if (hiY > loY) {
                 hiY -= 1;
                 hiYLimit.position.y = coordToPosY(hiY);
-                for (x = loX; x < hiX; x++) {
-                for (z = loZ; z < hiZ; z++) {
-                    if (getMatrix(x, hiY, z)) {
-                        matrixGeometryNeedsUpdate = true;
-                        return;
-                    }
-                }}
+                updateY(hiY, hiY + 1);
             }
         }
         if (e.key == 'l') {
             if (hiY < sizeY) {
                 hiY += 1;
                 hiYLimit.position.y = coordToPosY(hiY);
-                for (x = loX; x < hiX; x++) {
-                for (z = loZ; z < hiZ; z++) {
-                    if (getMatrix(x, hiY - 1, z)) {
-                        matrixGeometryNeedsUpdate = true;
-                        return;
-                    }
-                }}
+                updateY(hiY - 1, hiY);
             }
         }
 
@@ -725,52 +740,28 @@ function initVisualizer(config) {
             if (loZ > 0) {
                 loZ -= 1;
                 loZLimit.position.z = coordToPosZ(loZ);
-                for (x = loX; x < hiX; x++) {
-                for (y = loY; y < hiY; y++) {
-                    if (getMatrix(x, y, loZ)) {
-                        matrixGeometryNeedsUpdate = true;
-                        return;
-                    }
-                }}
+                updateZ(loZ, loZ + 1);
             }
         }
         if (e.key == 'i') {
             if (loZ < hiZ) {
                 loZ += 1;
                 loZLimit.position.z = coordToPosZ(loZ);
-                for (x = loX; x < hiX; x++) {
-                for (y = loY; y < hiY; y++) {
-                    if (getMatrix(x, y, loZ - 1)) {
-                        matrixGeometryNeedsUpdate = true;
-                        return;
-                    }
-                }}
+                updateZ(loZ - 1, loZ);
             }
         }
         if (e.key == 'o') {
             if (hiZ > loZ) {
                 hiZ -= 1;
                 hiZLimit.position.z = coordToPosZ(hiZ);
-                for (x = loX; x < hiX; x++) {
-                for (y = loY; y < hiY; y++) {
-                    if (getMatrix(x, y, hiZ)) {
-                        matrixGeometryNeedsUpdate = true;
-                        return;
-                    }
-                }}
+                updateZ(hiZ, hiZ + 1);
             }
         }
         if (e.key == 'p') {
             if (hiZ < sizeZ) {
                 hiZ += 1;
                 hiZLimit.position.z = coordToPosZ(hiZ);
-                for (x = loX; x < hiX; x++) {
-                for (y = loY; y < hiY; y++) {
-                    if (getMatrix(x, y, hiZ - 1)) {
-                        matrixGeometryNeedsUpdate = true;
-                        return;
-                    }
-                }}
+                updateZ(hiZ - 1, hiZ);
             }
         }
     }

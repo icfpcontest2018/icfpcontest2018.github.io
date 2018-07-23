@@ -8,6 +8,8 @@ title: ""
 
 # Links
 
+* Bonus Content
+  * [Exec Trace](/xtra/exec-trace.html) &ensp; \| &ensp; [Exec Trace (no visualizer)](/xtra/exec-trace-novis.html)
 * Full Contest (ends [Monday 23 July 2018 16:00 UTC](https://www.timeanddate.com/worldclock/fixedtime.html?msg=ICFP+Programming+Contest+2018+%28end+of+full+contest%29&iso=20180723T16))
   * [Live Standings](/full/live-standings.html)
   * [Updated Task Description](/full/task-description.html) &ensp; \| &ensp; [`problemsF.zip`](/assets/problemsF.zip) &ensp; \| &ensp; [`dfltTracesF.zip`](/assets/dfltTracesF.zip)
@@ -21,6 +23,9 @@ title: ""
 
 # News
 
+* 2018-07-23T21:00Z: Enjoy some bonus content!
+  * Disappointed with only 40X speedups?  Try setting an arbitrary number of initial seeds.
+  * Want faster animations?  Try disabling the (sometimes slow) groundedness checking.
 * 2018-07-23T16:00Z: The ICFP Programming Contest 2018 has ended.  Thanks to all contestants and teams for their participation!  Remember to complete your [profile](/profile.html) with complete team information and source code URL and SHA256 checksum.
 * 2018-07-23T15:00Z: One hour left in the Full Contest.
   * To be considered for prizes, [within two hours of end of the contest](https://www.timeanddate.com/worldclock/fixedtime.html?msg=ICFP+Programming+Contest+2018+%28source+code+submission+deadline%29&iso=20180723T18), teams must update their [profile](/profile.html) with complete team information and submit the URL and SHA256 checksum of a single `.zip` archive with their source code, a `README.txt` file (brief directions for judges to build/run the solution; description of the solution approach; feedback about the contest; self-nomination for judges' prize; etc.), and any other supporting materials.

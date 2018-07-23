@@ -4,6 +4,9 @@
 {% if page.tags contains 'full' %}
 {% include exec-trace-form-full.html %}
 {% endif %}
+{% if page.tags contains 'xtra' %}
+{% include exec-trace-form-xtra.html %}
+{% endif %}
 
 {% if page.tags contains 'vis' %}
 <hr>
@@ -44,5 +47,8 @@ var vis = null;
 {% endif %}
 {% if page.tags contains 'full' %}
 {% include exec-trace-ctrl-full.html %}
+{% endif %}
+{% if page.tags contains 'xtra' %}
+{% include exec-trace-ctrl-xtra.html %}
 {% endif %}
 <script src="{{ '/assets/js/exec-trace.js' | relative_url }}"></script>

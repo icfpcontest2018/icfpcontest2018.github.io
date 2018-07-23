@@ -1,15 +1,32 @@
 <form>
 
-<input type="hidden" id="phase" value="lgtn"/>
+<p>
+<label for="srcModelFileIn">Source Model:</label>
+<input type="checkbox" id="srcModelEmpty"/>
+<label for="srcModelEmpty">empty</label><br/>
+<input type="file" accept=".mdl" id="srcModelFileIn"/>
+</p>
 
 <p>
-<label for="tgtModelFileIn">Target Model:</label><br/>
-<input type="file" accept=".mdl" id="tgtModelFileIn"/>
+<label for="tgtModelFileIn">Target Model:</label>
+<input type="checkbox" id="tgtModelEmpty"/>
+<label for="tgtModelEmpty">empty</label><br/>
+<input accept=".mdl" type="file" id="tgtModelFileIn"/>
 </p>
 
 <p>
 <label for="traceFileIn">Trace:</label><br/>
 <input accept=".nbt" type="file" id="traceFileIn"/>
+</p>
+
+<p>
+<label for="phase">Seeds:</label><br/>
+<input type="number" id="phase" min="0" value="199"/>
+</p>
+
+<p>
+<label for="gcheck">Groundness Checking:</label><br/>
+<input type="checkbox" id="gcheck"/>
 </p>
 
 {% if page.tags contains 'vis' %}
