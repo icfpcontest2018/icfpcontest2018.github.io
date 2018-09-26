@@ -11,11 +11,11 @@ title: ""
 * Bonus Content
   * [Exec Trace](/xtra/exec-trace.html) &ensp; \| &ensp; [Exec Trace (no visualizer)](/xtra/exec-trace-novis.html)
 * Full Contest (ends [Monday 23 July 2018 16:00 UTC](https://www.timeanddate.com/worldclock/fixedtime.html?msg=ICFP+Programming+Contest+2018+%28end+of+full+contest%29&iso=20180723T16))
-  * [Live Standings](/full/live-standings.html)
+  * [Live Standings](/full/live-standings.html) &ensp; \| &ensp; [Final Standings](/full/final-standings.html)
   * [Updated Task Description](/full/task-description.html) &ensp; \| &ensp; [`problemsF.zip`](/assets/problemsF.zip) &ensp; \| &ensp; [`dfltTracesF.zip`](/assets/dfltTracesF.zip)
   * [View Model](/view-model.html) &ensp; \| &ensp; [Check Trace](/full/chk-trace.html) &ensp; \| &ensp; [Exec Trace](/full/exec-trace.html) &ensp; \| &ensp; [Exec Trace (no visualizer)](/full/exec-trace-novis.html)
 * Lightning Division (ends [Saturday 21 July 2018 16:00 UTC](https://www.timeanddate.com/worldclock/fixedtime.html?msg=ICFP+Programming+Contest+2018+%28end+of+lightning+division%29&iso=20180721T16))
-  * [Live Standings](/lgtn/live-standings.html)
+  * [Live Standings](/lgtn/live-standings.html) &ensp; \| &ensp; [Final Standings](/lgtn/final-standings.html)
   * [Task Description](/lgtn/task-description.html) &ensp; \| &ensp; [`problemsL.zip`](/assets/problemsL.zip) &ensp; \| &ensp; [`dfltTracesL.zip`](/assets/dfltTracesL.zip)
   * [View Model](/view-model.html) &ensp; \| &ensp; [Check Trace](/lgtn/chk-trace.html) &ensp; \| &ensp; [Exec Trace](/lgtn/exec-trace.html) &ensp; \| &ensp; [Exec Trace (no visualizer)](/lgtn/exec-trace-novis.html)
 * [Register](/register.html) &ensp; \| &ensp; [Profile](/profile.html) &ensp; \| &ensp; [Submit](/submit.html) &ensp; \| &ensp; [Secondary Submit](/submit-secondary.html) &ensp; \| &ensp; [Submission Acks](/submission-acks.html)
@@ -23,6 +23,17 @@ title: ""
 
 # News
 
+* 2018-09-25: Congratulations to the ICFP Programming Contest 2018 winners!
+  * Lightning Division Winner: Team jabber.ru  
+    OCaml is very suitable for rapid prototyping.
+  * Judges' Prize Winner: Team perpetuum mobile  
+    Team perpetuum mobile (using Scala) are an extremely cool bunch of hackers.
+  * Full Contest 2nd Place Winner: Team manarimo  
+    C++, Python, Ruby, JavaScript, bash, SQL are fine tools for many applications.
+  * Full Contes 1st Place Winner: Team Unagi  
+    Rust is the programming language of choice for discriminating hackers.
+
+  The ICFP Programming Contest 2018 report is available: [slides](/assets/report.pdf).
 * 2018-07-23T21:00Z: Enjoy some bonus content!
   * Disappointed with only 40X speedups?  Try setting an arbitrary number of initial seeds.
   * Want faster animations?  Try disabling the (sometimes slow) groundedness checking.
