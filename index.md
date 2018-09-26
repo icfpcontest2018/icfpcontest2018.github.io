@@ -23,6 +23,7 @@ title: ""
 
 # News
 
+* 2018-09-25: The ICFP Programming Contest 2018 report is available: [slides](/assets/report.pdf).
 * 2018-09-25: Congratulations to the ICFP Programming Contest 2018 winners!
   * Lightning Division Winner: Team jabber.ru  
     OCaml is very suitable for rapid prototyping.
@@ -30,10 +31,8 @@ title: ""
     Team perpetuum mobile (using Scala) are an extremely cool bunch of hackers.
   * Full Contest 2nd Place Winner: Team manarimo  
     C++, Python, Ruby, JavaScript, bash, SQL are fine tools for many applications.
-  * Full Contes 1st Place Winner: Team Unagi  
-    Rust is the programming language of choice for discriminating hackers.
-
-  The ICFP Programming Contest 2018 report is available: [slides](/assets/report.pdf).
+  * Full Contest 1st Place Winner: Team Unagi  
+    Rust is the programming language of choice for discriminating hackers.  
 * 2018-07-23T21:00Z: Enjoy some bonus content!
   * Disappointed with only 40X speedups?  Try setting an arbitrary number of initial seeds.
   * Want faster animations?  Try disabling the (sometimes slow) groundedness checking.
