@@ -23,7 +23,7 @@ title: ""
 
 # News
 
-* 2018-09-25: The ICFP Programming Contest 2018 report is available: [slides](/assets/report.pdf).
+* 2018-09-25: The ICFP Programming Contest 2018 report is available: [slides](/assets/report.pdf) and [video](https://youtu.be/E7KManykki8)
 * 2018-09-25: Congratulations to the ICFP Programming Contest 2018 winners!
   * Lightning Division Winner: Team jabber.ru  
     OCaml is very suitable for rapid prototyping.
@@ -33,6 +33,7 @@ title: ""
     C++, Python, Ruby, JavaScript, bash, SQL are fine tools for many applications.
   * Full Contest 1st Place Winner: Team Unagi  
     Rust is the programming language of choice for discriminating hackers.  
+* 2018-09-25: The Lightning Division [Final Standings](/lgtn/final-standings.html) and Full Contest [Final Standings](/full/final-standings.html) are available.
 * 2018-07-23T21:00Z: Enjoy some bonus content!
   * Disappointed with only 40X speedups?  Try setting an arbitrary number of initial seeds.
   * Want faster animations?  Try disabling the (sometimes slow) groundedness checking.
